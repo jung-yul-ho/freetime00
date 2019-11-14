@@ -1,0 +1,33 @@
+https://www.acmicpc.net/step
+
+노멀라이즈 방향만 남기고 값을 1로 바꾼다(거리)
+
+우선 각 공격 애니메이션의 클립을 공격을 완료한순간과 그뒤 일반 idle상태로 돌아가는 모양을 분리하고 공격을
+완료한 순간에서 몇 float간 대기하고 그 대기상태에서 공격한 순간 콤보로 이어지게 하기
+만일 콤보로 이어지지 않는다면 그뒤 분리한 돌아가는 애니메이션 재생
+
+            //애니메이션 조종
+            //Ani.GetCurrentAnimatorStateInfo(0).IsName
+            //if(Ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+            //{
+
+            //}
+            //if (Ani.GetAnimatorTransitionInfo(0).IsName("atk08 -> idle") == true)
+            //{
+
+            //}
+이용하기
+
+Physics.OverlapSphere
+
+말풍선 스크립트들 자세히 익히기 사용은 하고 있지만 부족한부분이 많음 복습할것
+
+네비게이션문제점 코루틴을 이용해서 막아놓음 그러나 문제가 뭔지 모르겠음 알아낼것
+
+조이스틱 컨트롤과 카메라 팔로우간의 상호작용이 안됨 해결방법 모색하기(호출순서 손보기 monomanger는 왠만해서는 쓰지
+말라고함)
+
+유니티 이벤트 매니저
+
+미니맵예시
+http://blog.naver.com/PostView.nhn?blogId=lovelybarry&logNo=220851755876&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView
