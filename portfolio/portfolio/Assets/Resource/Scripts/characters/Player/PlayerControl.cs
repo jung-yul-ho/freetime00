@@ -218,6 +218,8 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    //주의
+    //공격범위 재설정 필요 현제 플레이어 주위 그 자체를 공격범위로 생각중
     private void CreateAttackColliders()
     {
         //칼위치를 기준
@@ -230,7 +232,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (Colliders[i].gameObject.layer == 17)
             {
-                Colliders[i].GetComponent<Character>().Damage(PlayerInformation.Instance.Atk);
+                Colliders[i].GetComponent<EnermyControl>().Damage(PlayerInformation.Instance.Atk);
             }
         }
     }

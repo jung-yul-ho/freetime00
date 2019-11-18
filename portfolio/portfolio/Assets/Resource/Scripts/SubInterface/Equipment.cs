@@ -79,7 +79,7 @@ public class Equipment : MonoBehaviour
         SubInterfaceControler.Instance.ClickInventory.InventorySlotRelease();
         CheckForConsumeUi();
 
-        Player.Instance.CheckPlayerStat();
+        PlayerInformation.Instance.CheckPlayerStat();
     }
 
     public void ReleaseAllEquipment()
@@ -88,7 +88,7 @@ public class Equipment : MonoBehaviour
         BodySlot.InventorySlotRelease();
         WeaponSlot.InventorySlotRelease();
         ConsumeSlot.InventorySlotRelease();
-        Player.Instance.CheckPlayerStat();
+        PlayerInformation.Instance.CheckPlayerStat();
     }
 
     //장비로인한 능력치 변동 표시

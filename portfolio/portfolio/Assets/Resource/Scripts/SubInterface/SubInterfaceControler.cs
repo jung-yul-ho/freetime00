@@ -265,7 +265,7 @@ public class SubInterfaceControler : MonoBehaviour
             }
 
         }
-        Player.Instance.CheckPlayerStat();
+        PlayerInformation.Instance.CheckPlayerStat();
     }
 
     //장비한 아이템 교체

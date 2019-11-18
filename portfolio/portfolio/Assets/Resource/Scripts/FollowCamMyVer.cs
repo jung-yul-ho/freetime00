@@ -50,7 +50,7 @@ public class FollowCamMyVer : MonoBehaviour
         if (GameEingine.Instance.GameOver == false)
         {
             //개선전
-            if (TitleEngine.Instance.cameraversion == CameraVersion.CAMERA_VERSION_ONE)
+            if (PlayerInformation.Instance.cameraversion == CameraVersion.CAMERA_VERSION_ONE)
             {
                 //보스등장시 화면
                 if (GameEingine.Instance.BossAppear == true)
@@ -104,7 +104,7 @@ public class FollowCamMyVer : MonoBehaviour
                 }
             }
             //개선후
-            else if (TitleEngine.Instance.cameraversion == CameraVersion.CAMERA_VERSION_TWO)
+            else if (PlayerInformation.Instance.cameraversion == CameraVersion.CAMERA_VERSION_TWO)
             {
                 //보스등장시 화면
                 if (GameEingine.Instance.BossAppear == true)

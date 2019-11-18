@@ -70,28 +70,27 @@ public class GameEingine : MonoBehaviour
         //기본필수코드들
         //플레이어 생성위치 세팅
         EnermyCount = 0;
-        if(TitleEngine.Instance.PastPortal == PortalArea.PORTAL_VIALGE)
+        if(PlayerInformation.Instance.PastPortal == PortalArea.PORTAL_VIALGE)
         {
             GameObject obj = Instantiate(PlayerPrefab, RespownControl.Instance.PlayerRespown[0].position, transform.rotation) as GameObject;
             PlayerControler = obj.GetComponent<PlayerControl>();
         }
-        else if(TitleEngine.Instance.PastPortal == PortalArea.PORTAL_FIELDONE)
+        else if(PlayerInformation.Instance.PastPortal == PortalArea.PORTAL_FIELDONE)
         {
             GameObject obj = Instantiate(PlayerPrefab, RespownControl.Instance.PlayerRespown[1].position, transform.rotation) as GameObject;
             PlayerControler = obj.GetComponent<PlayerControl>();
         }
-        else if(TitleEngine.Instance.PastPortal == PortalArea.PORTAL_FIELDTWO)
+        else if(PlayerInformation.Instance.PastPortal == PortalArea.PORTAL_FIELDTWO)
         {
             GameObject obj = Instantiate(PlayerPrefab, RespownControl.Instance.PlayerRespown[2].position, transform.rotation) as GameObject;
             PlayerControler = obj.GetComponent<PlayerControl>();
         }
         GameUiEingine.Instance.setting(PlayerControler);
-        PlayerInformation.Instance.Hp = TitleEngine.Instance.CharacterHp;
         Camera.main.GetComponent<FollowCamMyVer>().PlayerTr = Player.Instance;
         BossDieCount = 0;
         BossAppear = false;
         RemainMonsterCount = 20;
-        if(TitleEngine.Instance.Battle == true)
+        if(PlayerInformation.Instance.Battle == true)
         {
             StartCoroutine(CreateMonster());
         }
@@ -166,7 +165,7 @@ public class GameEingine : MonoBehaviour
         SubInterfaceControler.Instance.ResetAllSubInterface();
         KillCount = 0;
         SaveLoad.Instance.Save();
-        TitleEngine.Instance.StartVilageMap();
+        PlayerInformation.Instance.StartVilageMap();
     }
 
     public void NextLevel()

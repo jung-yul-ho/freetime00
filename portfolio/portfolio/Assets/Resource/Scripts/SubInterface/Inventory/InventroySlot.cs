@@ -159,7 +159,7 @@ public class InventroySlot : MonoBehaviour
             {
                 SubInterfaceControler.Instance.ItemPositionMaintain();
             }
-            Player.Instance.CheckPlayerStat();
+            PlayerInformation.Instance.CheckPlayerStat();
         }
     }
 

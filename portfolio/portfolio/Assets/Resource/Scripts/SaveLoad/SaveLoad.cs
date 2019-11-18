@@ -7,8 +7,8 @@ using LitJson;
 
 public class SaveLoad : MonoBehaviour
 {
-    public List<int> ItemNumbers = new List<int>();
-    public List<int> CounsmeCount = new List<int>();
+    public List<int> ItemNumbers;
+    public List<int> CounsmeCount;
     static SaveLoad instance;
     public static SaveLoad Instance
     {
@@ -34,6 +34,8 @@ public class SaveLoad : MonoBehaviour
 
     public void Save()
     {
+        ItemNumbers = new List<int>();
+        CounsmeCount = new List<int>();
         for (int i = 0; i < 15; i++)
         {
             if (Inventory.Instance.inventories[i].use == true)
@@ -159,8 +161,8 @@ public class SaveLoad : MonoBehaviour
                 Equipment.Instance.ConsumeSlot.ItemCount.text = int.Parse(myjsondata["consumecount"][consumecount].ToString()).ToString();
             }
             PlayerInformation.Instance.Money = int.Parse(myjsondata["money"].ToString());
-            Player.Instance.SetMoney();
-            Player.Instance.CheckPlayerStat();
+            PlayerInformation.Instance.SetMoney();
+            PlayerInformation.Instance.CheckPlayerStat();
             Equipment.Instance.CheckForConsumeUi();
         }
     }

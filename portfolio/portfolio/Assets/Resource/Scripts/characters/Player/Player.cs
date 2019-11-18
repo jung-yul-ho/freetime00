@@ -37,24 +37,52 @@ public class Player : Character
         }
     }
 
+    public override void Damage(float Damage)
+    {
+        int def = PlayerInformation.Instance.Def;
+        int shield = PlayerInformation.Instance.Shield;
+        if (Damage > def)
+        {
+            if (shield > 0)
+            {
+                PlayerInformation.Instance.Shield -= (int)(Damage - def);
+            }
+            else
+            {
+                PlayerInformation.Instance.Hp -= (int)(Damage - def);
+            }
+        }
+        else
+        {
+            if (shield > 0)
+            {
+                shield -= 1;
+            }
+            else
+            {
+                PlayerInformation.Instance.Hp -= 1;
+            }
+        }
+    }
+
     private void Start()
     {
-        if(TitleEngine.Instance.ThisArea == PortalArea.PORTAL_VIALGE)
+        if(PlayerInformation.Instance.ThisArea == PortalArea.PORTAL_VIALGE)
         {
-            if (TitleEngine.Instance.PastPortal == PortalArea.PORTAL_FIELDONE)
+            if (PlayerInformation.Instance.PastPortal == PortalArea.PORTAL_FIELDONE)
             {
                 transform.Rotate(0, 180, 0);
             }
-            else if (TitleEngine.Instance.PastPortal == PortalArea.PORTAL_FIELDTWO)
+            else if (PlayerInformation.Instance.PastPortal == PortalArea.PORTAL_FIELDTWO)
             {
                 transform.Rotate(0, 90, 0);
             }
         }
-        else if (TitleEngine.Instance.ThisArea == PortalArea.PORTAL_FIELDONE)
+        else if (PlayerInformation.Instance.ThisArea == PortalArea.PORTAL_FIELDONE)
         {
             transform.Rotate(0, -90, 0);
         }
-        else if(TitleEngine.Instance.ThisArea == PortalArea.PORTAL_FIELDTWO)
+        else if(PlayerInformation.Instance.ThisArea == PortalArea.PORTAL_FIELDTWO)
         {
             transform.Rotate(0, -90, 0);
         }
@@ -104,31 +132,6 @@ public class Player : Character
         }
     }
 
-    //플레이어의 기본능력치와 장비를 포함해서 능력치를 계산해주는 코드
-    public void CheckPlayerStat()
-    {
-        PlayerInformation.Instance.Def = 0;
-        PlayerInformation.Instance.Atk = 0;
-        //2는 기본능력치
-        if(Equipment.Instance.WeaponSlot.use == true)
-        {
-            PlayerInformation.Instance.Atk = 2 + Equipment.Instance.WeaponSlot.InitItem.atk;
-        }
-        else
-        {
-            PlayerInformation.Instance.Atk = 2;
-        }
-        if (Equipment.Instance.BodySlot.use == true)
-        {
-            PlayerInformation.Instance.Def += Equipment.Instance.BodySlot.InitItem.def;
-        }
-        if (Equipment.Instance.HeadSlot.use == true)
-        {
-            PlayerInformation.Instance.Def += Equipment.Instance.HeadSlot.InitItem.def;
-        }
-        Equipment.Instance.EquipViewReset();
-    }
-
     //피격데미지(단일마법)
     private void OnTriggerEnter(Collider other)
     {
@@ -162,11 +165,6 @@ public class Player : Character
                 }
             }
         }
-    }
-
-    public void SetMoney()
-    {
-        Inventory.Instance.Money.text = PlayerInformation.Instance.Money.ToString() + "G";
     }
 
     public void SetPreparePotion()

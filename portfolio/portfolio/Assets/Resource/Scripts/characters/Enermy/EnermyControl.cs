@@ -183,33 +183,24 @@ public class EnermyControl : Character
         nvAgent.enabled = true;
     }
 
-    //일반공격및 타격마법 대미지구현
-    private void OnTriggerEnter(Collider other)
-    {
-        //무기타격시 대미지 구현
-        //if (other.gameObject.tag == "Weapon" && die == false)
-        //{
-        //    Damage(Player.Instance.Atk);
-        //}
-        //else if (other.gameObject.tag == "Magic" && die == false)
-        //{
-        //    //굳이 getcomponent 써야되나?
-        //    Damage(other.gameObject.GetComponent<Effect>().EffectPower);
-        //}
-    }
-
-    //무기타격시 대미지 구현
-    //public void hit()
-    //{
-    //    Damage(Player.Instance.Atk);
-    //}
-
     //스킬범위안에있을때 지속대미지 구현
     private void OnParticleCollision(GameObject other)
     {
         if (other.gameObject.tag == "Magic" && die == false)
         {
             Damage(other.GetComponent<Effect>().EffectPower);
+        }
+    }
+
+    public override void Damage(float Damage)
+    {
+        if (Damage > Def)
+        {
+            Hp -= (int)(Damage - Def);
+        }
+        else
+        {
+            Hp -= 1;
         }
     }
 

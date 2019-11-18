@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-public enum CameraVersion
-{
-    CAMERA_VERSION_ONE,
-    CAMERA_VERSION_TWO
-}
 
 public class TitleEngine : MonoBehaviour
 {
-    public CameraVersion cameraversion;
     public GameObject ranking;
     public GameObject Option;
     //HP볼것인지 안볼것인지 결정
@@ -39,18 +31,6 @@ public class TitleEngine : MonoBehaviour
     public GameObject OptionButton;
     public GameObject Exit;
 
-    //들어갈 맵이 전투맵인지 아닌지 판단
-    public bool Battle;
-
-    //지금이 어느 맵인지 확인
-    public PortalArea ThisArea;
-
-    //어느 맵에서 이동해왔는지를 체크
-    public PortalArea PastPortal;
-
-    //내 캐릭터의 hp가 얼마인지 나타냄
-    public int CharacterHp;
-
     static TitleEngine instance;
     public static TitleEngine Instance
     {
@@ -71,46 +51,8 @@ public class TitleEngine : MonoBehaviour
 
     public void Start()
     {
-        CharacterHp = 10;
         Screen.SetResolution(1920, 1080, true);
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void StartVilageMap()
-    {
-        //StartCoroutine(LoadScene("Viliage"));
-        Battle = false;
-        SceneManager.LoadScene("UI_SCENE");
-        SceneManager.LoadScene("Viliage", LoadSceneMode.Additive);
-        ThisArea = PortalArea.PORTAL_VIALGE;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        if(scene.name == "Viliage")
-        {
-            //SaveLoad.Instance.Load();
-        }
-    }
-
-    public void StartBattleMap(int MapNum)
-    {
-        Battle = true;
-        SceneManager.LoadScene("UI_SCENE");
-        if(MapNum == 1)
-        {
-            SceneManager.LoadScene("Level 01", LoadSceneMode.Additive);
-            ThisArea = PortalArea.PORTAL_FIELDONE;
-        }
-        else if(MapNum == 2)
-        {
-            SceneManager.LoadScene("Level 02", LoadSceneMode.Additive);
-            ThisArea = PortalArea.PORTAL_FIELDTWO;
-        }
+        DontDestroyOnLoad(PlayerInformation.Instance.gameObject);
     }
 
     public void ViewOption()
@@ -156,14 +98,14 @@ public class TitleEngine : MonoBehaviour
 
     public void CameraverChange()
     {
-        if(cameraversion == CameraVersion.CAMERA_VERSION_TWO)
+        if(PlayerInformation.Instance.cameraversion == CameraVersion.CAMERA_VERSION_TWO)
         {
-            cameraversion = CameraVersion.CAMERA_VERSION_ONE;
+            PlayerInformation.Instance.cameraversion = CameraVersion.CAMERA_VERSION_ONE;
             CameraText.text = "이거기초버전 딴거해";
         }
         else
         {
-            cameraversion = CameraVersion.CAMERA_VERSION_TWO;
+            PlayerInformation.Instance.cameraversion = CameraVersion.CAMERA_VERSION_TWO;
             CameraText.text = "이거해";
         }
     }
