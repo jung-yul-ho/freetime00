@@ -110,7 +110,7 @@ public class GameEingine : MonoBehaviour
                     RemainMonsterCount--;
                     GameObject obj = Instantiate(Enermies[1].gameObject, respon[idx].EnermyRespown.position, respon[idx].EnermyRespown.rotation) as GameObject;
                     GameDataEngine.Instance.LoadEnermyData(obj);
-                    if (TitleEngine.Instance.HpView == false)
+                    if (PlayerInformation.Instance.HpView == false)
                     {
                         obj.GetComponent<EnermyControl>().HpbarPos.SetActive(false);
                     }

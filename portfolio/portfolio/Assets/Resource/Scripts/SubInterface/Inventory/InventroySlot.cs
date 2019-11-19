@@ -195,10 +195,10 @@ public class InventroySlot : MonoBehaviour
             Newitem.InitInventoryslot = this;
             use = true;
             InitItem = Newitem;
-            if (ControlerPlayer == true)
-            {
-                Newitem.owner = Player.Instance;
-            }
+            //if (ControlerPlayer == true)
+            //{
+            //    Newitem.owner = Player.Instance;
+            //}
             //이거 왜 이러지?
             Newitem.transform.localPosition = new Vector3(45, -45, 0);
             //소모품일경우 하나가 존재한다는 의미부여

@@ -74,7 +74,7 @@ public class market : MonoBehaviour
 
     public void Buy()
     {
-        if (itemexplain.SelectItem.owner == null && PlayerInformation.Instance.Money >= itemexplain.SelectItem.iteminformation.ItemCost)
+        if (PlayerInformation.Instance.Money >= itemexplain.SelectItem.iteminformation.ItemCost)
         {
             if(Inventory.Instance.InItItem(itemexplain.SelectItem.iteminformation.itemnumber) == true)
             {
@@ -92,26 +92,13 @@ public class market : MonoBehaviour
     {
         if(itemexplain.SelectItem != null)
         {
-            if (itemexplain.SelectItem.owner == Player.Instance)
+            PlayerInformation.Instance.Money += itemexplain.SelectItem.iteminformation.ItemCost;
+            SubInterfaceControler.Instance.MoneySetting();
+            if (itemexplain.SelectItem.iteminformation.itemtype == ItemType.ITEM_CONSUME)
             {
-                PlayerInformation.Instance.Money += itemexplain.SelectItem.iteminformation.ItemCost;
-                SubInterfaceControler.Instance.MoneySetting();
-                if (itemexplain.SelectItem.iteminformation.itemtype == ItemType.ITEM_CONSUME)
-                {
-                    itemexplain.SelectItem.itemcount--;
-                    itemexplain.SelectItem.InitInventoryslot.ConsumeItemSetting();
-                    if (itemexplain.SelectItem.itemcount <= 0)
-                    {
-                        itemexplain.SelectItem.InitInventoryslot.use = false;
-                        itemexplain.SelectItem.InitInventoryslot.InitItem = null;
-                        itemexplain.ItemImage.sprite = null;
-                        Destroy(itemexplain.SelectItem.gameObject);
-                        itemexplain.SelectItem = null;
-                        itemexplain.ItemExplain.text = "";
-                        itemexplain.ItemMoney.text = "0" + "G";
-                    }
-                }
-                else
+                itemexplain.SelectItem.itemcount--;
+                itemexplain.SelectItem.InitInventoryslot.ConsumeItemSetting();
+                if (itemexplain.SelectItem.itemcount <= 0)
                 {
                     itemexplain.SelectItem.InitInventoryslot.use = false;
                     itemexplain.SelectItem.InitInventoryslot.InitItem = null;
@@ -121,6 +108,16 @@ public class market : MonoBehaviour
                     itemexplain.ItemExplain.text = "";
                     itemexplain.ItemMoney.text = "0" + "G";
                 }
+            }
+            else
+            {
+                itemexplain.SelectItem.InitInventoryslot.use = false;
+                itemexplain.SelectItem.InitInventoryslot.InitItem = null;
+                itemexplain.ItemImage.sprite = null;
+                Destroy(itemexplain.SelectItem.gameObject);
+                itemexplain.SelectItem = null;
+                itemexplain.ItemExplain.text = "";
+                itemexplain.ItemMoney.text = "0" + "G";
             }
         }
         else

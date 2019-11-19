@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum CameraVersion
 {
@@ -11,7 +12,16 @@ public enum CameraVersion
 
 public class PlayerInformation : MonoBehaviour
 {
+    // 보유 아이템 정보들
+    public List<int> InvenList;
+    public int HeadItem;
+    public int BodyItem;
+    public int WeaponItem;
+    public int ConsumItem;
+
+    //카메라 상태
     public CameraVersion cameraversion;
+
     //지금이 어느 맵인지 확인
     public PortalArea ThisArea;
 
@@ -25,6 +35,9 @@ public class PlayerInformation : MonoBehaviour
 
     //들어갈 맵이 전투맵인지 아닌지 판단
     public bool Battle;
+
+    //게임상에서 hp를 표시할지 말것인지 결정
+    public bool HpView = true;
 
     static PlayerInformation instance;
     public static PlayerInformation Instance
@@ -72,11 +85,8 @@ public class PlayerInformation : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
         if (scene.name == "Viliage")
         {
-            Debug.Log("!!!!");
             SaveLoad.Instance.Load();
         }
     }
@@ -109,5 +119,17 @@ public class PlayerInformation : MonoBehaviour
     public void SetMoney()
     {
         Inventory.Instance.Money.text = Money.ToString() + "G";
+    }
+
+    public void HpviewChange()
+    {
+        if (HpView == true)
+        {
+            HpView = false;
+        }
+        else
+        {
+            HpView = true;
+        }
     }
 }

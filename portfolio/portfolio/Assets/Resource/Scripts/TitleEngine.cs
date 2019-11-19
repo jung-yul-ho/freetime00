@@ -7,9 +7,6 @@ public class TitleEngine : MonoBehaviour
 {
     public GameObject ranking;
     public GameObject Option;
-    //HP볼것인지 안볼것인지 결정
-    public Image HpImage;
-    public Text HpText;
 
     //카메라버전 체인지
     public Text CameraText;
@@ -17,12 +14,6 @@ public class TitleEngine : MonoBehaviour
     //랭킹창을 보조하기 위해서 만듬 일단 놔두기
     public List<Text>  NameText;
     public List<Text> PointText;
-
-    //게임상에서 hp를 표시할지 말것인지 결정
-    public bool HpView = true;
-
-    //참거짓을 나타내는 이미지
-    public Sprite True;
 
     //타이틀 기초 인터페이스
     public GameObject TitleMenu;
@@ -78,22 +69,6 @@ public class TitleEngine : MonoBehaviour
     public void CloseRanking()
     {
         ranking.SetActive(false);
-    }
-
-    public void HpviewChange()
-    {
-        if(HpView == true)
-        {
-            HpView = false;
-            HpImage.sprite = null;
-            HpText.text = "hp표시 안함";
-        }
-        else
-        {
-            HpView = true;
-            HpImage.sprite = True;
-            HpText.text = "hp표시중";
-        }
     }
 
     public void CameraverChange()

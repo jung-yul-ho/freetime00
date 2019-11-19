@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public Player owner;
     public ItemInformation iteminformation;
     public RectTransform rect;
     public InventroySlot InitInventoryslot;

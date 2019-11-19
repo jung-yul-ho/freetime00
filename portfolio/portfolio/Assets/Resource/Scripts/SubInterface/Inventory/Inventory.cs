@@ -37,6 +37,18 @@ public class Inventory : MonoBehaviour
             inventories[i].SlotNumber = i;
         }
         CloseInventory();
+        SettingInven();
+    }
+
+    public void SettingInven()
+    {
+        for(int i = 0; i< 15; i++)
+        {
+            if(PlayerInformation.Instance.InvenList[i] != 0)
+            {
+                InItItem(PlayerInformation.Instance.InvenList[i]);
+            }
+        }
     }
 
     //아이템 만든뒤 배치시키기
